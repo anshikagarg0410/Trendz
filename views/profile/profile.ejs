@@ -1,0 +1,73 @@
+<% layout('layouts/profile-template') %>
+
+<style>
+  .profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 60vh;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    padding: 1rem;
+    background: linear-gradient(to right, #0f2027, #2c5364, #4b1248);
+  }
+
+  .profile-avatar {
+    font-size: 180px;
+    margin-bottom: 20px;
+    color: rgba(255, 255, 255, 0.2);
+  }
+
+  .profile-details h2 {
+    font-weight: 600;
+    margin-bottom: 10px;
+    font-size: 28px;
+  }
+
+  .profile-details p {
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+
+  .profile-details strong {
+    color: #fff;
+  }
+
+  button {
+    margin-top: 20px;
+    background-color: #ff4081;
+    border: none;
+    padding: 10px 24px;
+    color: white;
+    border-radius: 25px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  button:hover {
+    background-color: #e73370;
+  }
+
+  @media (max-width: 768px) {
+    .profile-container {
+      padding-bottom: 80px; /* ensure space above bottom navbar */
+    }
+  }
+</style>
+
+<div class="profile-container">
+  <div class="profile-avatar">
+    <i class="fas fa-user-circle"></i>
+  </div>
+  <div class="profile-details">
+    <p><strong>Username:</strong> <%= user.username %></p>
+    <p><strong>Email:</strong> <%= user.email %></p>
+  </div>
+  <button>Log Out</button>
+  </div>
+</div>
+
+

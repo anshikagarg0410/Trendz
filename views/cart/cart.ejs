@@ -1,0 +1,18 @@
+<% layout('layouts/cart-template') %>
+  <div class="container">
+    <h1>Your Cart</h1>
+    <div id="cart-items"></div>
+
+    <div class="summary">
+      <p id="subtotal">Subtotal: ₹0</p>
+      <p id="tax">Tax (15%): ₹0</p>
+      <p id="shipping">Shipping: ₹49</p>
+      <p class="total" id="total">Total: ₹0</p>
+    </div>
+
+    <div class="buttons">
+      <button id="clear-cart" class="clear-cart" onclick="clearCart()">🗑 Clear Cart</button>
+      <a href="/products" class="continue">← Continue Shopping</a>
+      <a href="/buynow" id="checkout" class="checkout">Checkout →</a>
+    </div>
+  </div>

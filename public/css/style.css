@@ -1,0 +1,237 @@
+ * {
+   margin: 0;
+   padding: 0;
+   font-family: 'Poppins', sans-serif;
+   box-sizing: border-box;
+ }
+
+ .bottom-nav {
+   background: #111;
+   display: flex;
+   justify-content: space-around;
+   padding: 10px 0;
+   box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+   position: fixed;
+   /* Add this */
+   left: 0;
+   /* Add this */
+   right: 0;
+   /* Add this */
+   bottom: 0;
+   /* Add this */
+   z-index: 1000;
+   /* Optional: ensures it stays on top */
+ }
+
+ .bottom-nav a {
+   text-decoration: none;
+   color: #aaa;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   font-size: 12px;
+ }
+
+ .bottom-nav i {
+   font-size: 20px;
+   margin-bottom: 3px;
+   transition: 0.2s;
+ }
+
+ .bottom-nav a:hover i {
+   color: #ff3c85;
+ }
+
+ body {
+   background-color: #000;
+   color: #fff;
+   display: flex;
+   flex-direction: column;
+   height: 100vh;
+ }
+
+ header {
+   background: #111;
+   padding: 10px 20px;
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+ }
+
+ .logo {
+   display: flex;
+   align-items: center;
+   gap: 10px;
+ }
+
+ .logo img {
+   width: 35px;
+   border-radius: 50%;
+ }
+
+ .brand {
+   font-size: 20px;
+   font-weight: bold;
+   background: linear-gradient(to right, #a100ff, #ff357f);
+   -webkit-background-clip: text;
+   background-clip: text;
+   -webkit-text-fill-color: transparent;
+ }
+
+ .search-wrapper {
+   background: #111;
+   padding: 10px 20px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   gap: 10px;
+   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+ }
+
+ .search-bar {
+   flex: 1;
+   max-width: 500px;
+   padding: 8px 15px;
+   border-radius: 20px;
+   border: 1px solid #444;
+   background: #222;
+   color: #fff;
+ }
+
+ .dropdown {
+   position: relative;
+   display: inline-block;
+ }
+
+ .dropdown button {
+   background: #ff3c85;
+   color: white;
+   border: none;
+   padding: 8px 12px;
+   border-radius: 10px;
+   cursor: pointer;
+ }
+
+ .dropdown-content {
+   display: none;
+   position: absolute;
+   right: 0;
+   background-color: #111;
+   min-width: 180px;
+   box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+   z-index: 1;
+   border-radius: 10px;
+ }
+
+ .dropdown-content a {
+   color: white;
+   padding: 10px;
+   display: block;
+   text-decoration: none;
+ }
+
+ .dropdown-content a:hover {
+   background-color: #222;
+ }
+
+ .dropdown:hover .dropdown-content {
+   display: block;
+ }
+ .logout {
+   background: #ff3c85;
+   color: white;
+   border: none;
+   padding: 8px 12px;
+   border-radius: 10px;
+   cursor: pointer;
+   position: absolute;
+   right: 20px;
+ }
+
+ main {
+  flex: 1;
+  padding: 10px 20px;
+  overflow-y: auto;
+}
+
+/* Section Title */
+.section-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 20px 0 15px;
+  padding-left: 10px;
+  color: #fff;
+}
+
+/* Product Grid Layout */
+.products {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 1.2rem;
+  margin-bottom: 80px;
+  padding: 0 10px;
+}
+
+.product-card {
+  background: #111;
+  border-radius: 16px;
+  padding: 10px;
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.05);
+  text-align: center;
+  transition: transform 0.2s ease;
+}
+
+.product-card:hover {
+  transform: scale(1.03);
+}
+
+.product-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.product-card h4 {
+  margin-top: 10px;
+  font-size: 15px;
+  font-weight: 500;
+  color: #fff;
+}
+
+.product-card p {
+  color: #ff3c85;
+  font-weight: bold;
+  margin: 5px 0 0;
+  font-size: 14px;
+}
+
+.products a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  .products {
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 1rem;
+  }
+
+  .product-card {
+    padding: 8px;
+  }
+
+  .product-card img {
+    height: 150px;
+  }
+
+  .product-card h4 {
+    font-size: 13px;
+  }
+
+  .product-card p {
+    font-size: 13px;
+  }
+}

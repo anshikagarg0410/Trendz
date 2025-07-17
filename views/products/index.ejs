@@ -1,0 +1,28 @@
+<% layout('layouts/boilerplate') %>
+
+    <body>
+        <%- include("../includes/searchbar.ejs") %>
+            <main>
+                <div class="section-title">
+                    <% if (typeof category !=='undefined' ) { %>
+                        Products in "<%=category %>" Category
+                            <% } else { %>
+                                Clothes for Women
+                                <% } %>
+                </div>
+                <div class="products">
+                    <% for (let product of allProducts) { %>
+                        <a href="/products/<%= product._id%>">
+                            <div class="product-card"><img src="<%= product.image %>" alt="Product-image">
+                                <h4>
+                                    <%= product.name %>
+                                </h4>
+                                <p>&#8377;<%= product.price.toLocaleString("en-IN") %>
+                                </p>
+                            </div>
+                        </a>
+                        <% } %>
+                </div>
+                </div>
+            </main>
+    </body>

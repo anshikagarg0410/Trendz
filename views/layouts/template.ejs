@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TRENDY-Z</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/template-style.css">
+    <link rel="stylesheet" href="/css/rating.css">
+</head>
+
+<body>
+    <%- include("../includes/navbar") %>
+        <div class="header">TRENDY-Z</div>
+        <%- include("../includes/flash") %>
+            <div class="container">
+                <%- body %>
+            </div>
+            <div class="actions">
+                <button class="add-cart" onclick="addToCart()">Add to Cart</button>
+                <button class="add-fav" onclick="addToFavourites()">Add to Favourites</button>
+                <button class="buy-now" onclick="location.href='/buynow'">Buy Now</button>
+            </div>
+            <div class="reviews">
+                <h3>Leave a Review</h3>
+                <form action="/products/<%= product._id %>/reviews" method="POST">
+                    <div class="rating">
+                        <!-- <input type="range" min="1" max="5" step="1" id="rating" name="review[rating]"> -->
+                         <label for="rating">Rating</label>
+                        <fieldset class="starability-basic">
+                            <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1" checked
+                                aria-label="No rating." />
+                            <input type="radio" id="first-rate1" name="review[rating]" value="1" />
+                            <label for="first-rate1" title="Terrible">1 star</label>
+                            <input type="radio" id="first-rate2" name="review[rating]" value="2" />
+                            <label for="first-rate2" title="Not good">2 stars</label>
+                            <input type="radio" id="first-rate3" name="review[rating]" value="3" />
+                            <label for="first-rate3" title="Average">3 stars</label>
+                            <input type="radio" id="first-rate4" name="review[rating]" value="4" />
+                            <label for="first-rate4" title="Very good">4 stars</label>
+                            <input type="radio" id="first-rate5" name="review[rating]" value="5" />
+                            <label for="first-rate5" title="Amazing">5 stars</label>
+                        </fieldset>
+                    </div>
+                    <div class="comment">
+                        <label for="comment">Add your Comment</label>
+                        <textarea name="review[comment]" id="comment" required></textarea>
+                    </div>
+                    <button class="submit">Submit</button>
+                </form>
+            </div>
+            <h3>Reviews</h3>
+            <% for(review of product.reviews) { %>
+                <div class="reviews">
+                    <h4><strong>Author:</strong>
+                        <%= review.author.username %>
+                    </h4>
+                    <p class="starability-result" data-rating="<%= review.rating %>">
+                    </p>
+                    <p><strong>Comment:</strong>
+                        <%= review.comment %>
+                    </p>
+                    <form method="POST" action="/products/<%= product._id %>/reviews/<%= review._id %>?_method=DELETE">
+                        <button class="Delete">Delete</button>
+                    </form>
+                </div>
+                <% } %>
+                    <script src="/javascript/script.js"></script>
+</body>
+
+</html>
