@@ -132,6 +132,10 @@ app.get('/logout', (req, res, next) => {
     res.redirect('/login');
   });
 });
+
+app.get('/', (req, res) => {
+  res.redirect('/products');
+});
 //index route to render the products page
 app.get('/products', isLoggedIn, async (req, res) => {
   const { category } = req.query;
