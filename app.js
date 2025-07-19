@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
@@ -8,12 +9,14 @@ const Review = require('./models/reviews'); // Adjust the path as necessary
 const {reviewSchema} = require('./schema'); // Adjust the path as necessary
 const methodOverride = require('method-override');
 const session = require('express-session');
+const MongoStore = require('connect-mongo');
 const flash = require('connect-flash');
 const passport = require('passport');
 const User = require('./models/user'); // Adjust the path as necessary
 const LocalStrategy = require('passport-local');
 
-const dbURI = 'mongodb://127.0.0.1:27017/ecommerce';// Replace with your MongoDB URI
+// const dbURI = 'mongodb://127.0.0.1:27017/ecommerce';// Replace with your MongoDB URI
+const dbUrl= process.env.ATLASDB_URL;
 main().then(() => {
   console.log('Connected to MongoDB');  
 }).catch(err => {
@@ -21,7 +24,7 @@ main().then(() => {
 });
 
 async function main() {
-    await mongoose.connect(dbURI);
+    await mongoose.connect(dbUrl);
 }
 app.set('views', path.join(__dirname, 'views')); // Set the views directory
 app.set('view engine', 'ejs'); // Set EJS as the view engine
@@ -30,10 +33,21 @@ app.engine('ejs', ejsMate); // Use ejsMate for EJS layout support
 app.use(express.static('public'));
 app.use(methodOverride('_method'));
 
+const store= MongoStore.create({
+  mongoUrl: dbUrl,
+  crypto:{
+    secret:process.env.SESSION_SECRET,
+  },
+  touchAfter:24*3600,
+});
 
+store.on("error",()=>{
+  console.log("error in mongo-session store:", err);
+});
 
 const sessionOptions = {
-  secret: 'your-secret-key', // Replace with your secret key
+  store,
+  secret: process.env.SESSION_SECRET, // Replace with your secret key
   resave: false,
   saveUninitialized: true,
   cookie: {
@@ -42,6 +56,8 @@ const sessionOptions = {
     httpOnly: true, // Prevents client-side JavaScript from accessing the cookie
   }
 };
+
+
 app.use(session(sessionOptions)); // Use session middleware
 app.use(flash()); // Use flash middleware for flash messages
 app.use(passport.initialize()); // Initialize Passport.js
